@@ -8,9 +8,13 @@ public class Party {
     private int noOfGuests;
     private String partyName;
     private ArrayList<Guest> guestList = new ArrayList<Guest>();
+    private ArrayList<Party> partyList = new ArrayList<Party>();
     private String partyHostName;
     private Scanner sc = new Scanner(System.in);
 
+    public ArrayList<Guest> getGuestList() {
+        return guestList;
+    }
 
     public int getNoOfGuests() {
         return noOfGuests;
@@ -35,9 +39,9 @@ public class Party {
                 Guest g = new Guest(name);
                 guestList.add(g);
                 System.out.println("You've added '" + g.getName() + "' to the party");
-                printPartyGuestList();
             }
         }
+        printPartyGuestList();
     }
 
 
@@ -58,9 +62,25 @@ public class Party {
     }
 
     public void printPartyGuestList(){
-        for (Guest g : guestList){
+        System.out.println("\nCurrently, the people going to '" + getPartyName() + "' hosted by '" + getPartyHostName() + "' are:");
+        for (Guest g : guestList) {
+            System.out.println(g.guestDetailsToString());
+        }
+    }
+
+    public void printPartyTablesList(){
+        System.out.println("\nCurrently, the people going to '" + getPartyName() + "' hosted by '" + getPartyHostName() + "' are sitting on these tables:");
+        for (Party p : partyList) {
+            printPartyTable(p);
+        }
+    }
+
+    public void printPartyTable(Party party){
+        System.out.println("The people on the table " + party.getPartyName() + " are:");
+        for (Guest g : party.getGuestList()){
             System.out.println(g.getName());
         }
+        System.out.println("\n");
     }
 
 }
