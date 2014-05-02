@@ -41,8 +41,17 @@ public class Party {
                 Guest g = new Guest(name);
                 System.out.println("You've added '" + g.getName() + "' to the party");
                 guestList.add(g);
+
+
+
+
+
             }
         }
+    }
+
+    private void shuffleTables() {
+        //TODO shuffle the tables once they have been set
     }
 
 
