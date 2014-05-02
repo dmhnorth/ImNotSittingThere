@@ -26,7 +26,8 @@ public class PartyController {
         System.out.println("Let's add the guests to the party...");
         p.addGuests(p.getNoOfGuests());
 
-
+        p.printPartyGuestList();
+        p.printPartyTablesList();
 
 
     }

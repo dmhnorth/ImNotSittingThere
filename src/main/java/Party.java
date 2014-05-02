@@ -4,13 +4,16 @@ import java.util.Scanner;
 public class Party {
 
 
-
     private int noOfGuests;
     private String partyName;
     private ArrayList<Guest> guestList = new ArrayList<Guest>();
-    private ArrayList<Party> partyList = new ArrayList<Party>();
+    private ArrayList<PartyTable> tableList = new ArrayList<PartyTable>();
     private String partyHostName;
     private Scanner sc = new Scanner(System.in);
+
+    public Party() {
+        //empty constructor
+    }
 
     public ArrayList<Guest> getGuestList() {
         return guestList;
@@ -33,15 +36,13 @@ public class Party {
             name = sc.nextLine();
 
             if (name.isEmpty()) {
-                printPartyGuestList();
                 return;
             } else {
                 Guest g = new Guest(name);
-                guestList.add(g);
                 System.out.println("You've added '" + g.getName() + "' to the party");
+                guestList.add(g);
             }
         }
-        printPartyGuestList();
     }
 
 
@@ -61,26 +62,32 @@ public class Party {
         return partyHostName;
     }
 
-    public void printPartyGuestList(){
+    public void printPartyGuestList() {
         System.out.println("\nCurrently, the people going to '" + getPartyName() + "' hosted by '" + getPartyHostName() + "' are:");
         for (Guest g : guestList) {
             System.out.println(g.guestDetailsToString());
         }
     }
 
-    public void printPartyTablesList(){
+    public void printPartyTablesList() {
         System.out.println("\nCurrently, the people going to '" + getPartyName() + "' hosted by '" + getPartyHostName() + "' are sitting on these tables:");
-        for (Party p : partyList) {
-            printPartyTable(p);
+
+        if (tableList.isEmpty()) {
+            System.out.println("There are no tables set.");
+        } else {
+
+            for (PartyTable pt : tableList) {
+                printPartyTable(pt);
+            }
         }
     }
 
-    public void printPartyTable(Party party){
-        System.out.println("The people on the table " + party.getPartyName() + " are:");
-        for (Guest g : party.getGuestList()){
-            System.out.println(g.getName());
+    public void printPartyTable(PartyTable pt) {
+            System.out.println("The people on the table " + pt.getTableName() + " are:");
+            for (Guest g : pt.getGuestList()) {
+                System.out.println(g.getName());
+            }
+            System.out.println("\n");
         }
-        System.out.println("\n");
     }
 
-}
