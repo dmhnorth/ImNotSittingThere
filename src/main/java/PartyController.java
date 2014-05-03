@@ -18,6 +18,9 @@ public class PartyController {
         p.setPartyName(sc.nextLine());
         System.out.println("The party is called: '" + p.getPartyName() + "'");
 
+        System.out.println("How many people are there to a table?");
+        p.setTableSize(Integer.parseInt(sc.nextLine()));
+        System.out.println("That's " + p.getTableSize() + " guests per table");
 
         System.out.println("How many guests would you like?: ");
         p.setNoOfGuests(Integer.parseInt(sc.nextLine()));

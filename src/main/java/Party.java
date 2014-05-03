@@ -10,6 +10,7 @@ public class Party {
     private ArrayList<PartyTable> tableList = new ArrayList<PartyTable>();
     private String partyHostName;
     private Scanner sc = new Scanner(System.in);
+    private int tableSize;
 
     public Party() {
         //empty constructor
@@ -41,11 +42,34 @@ public class Party {
                 Guest g = new Guest(name);
                 System.out.println("You've added '" + g.getName() + "' to the party");
                 guestList.add(g);
+                assignGuestToPartyTable(g);
+            }
+        }
+    }
 
-
-
-
-
+    private void assignGuestToPartyTable(Guest g) {
+        //creates a new table and adds them to it
+        if (tableList.isEmpty()) {
+            PartyTable pt = new PartyTable(g.getName() + "'s table");
+            pt.getGuestList().add(g);
+            tableList.add(pt);
+        } else {
+            PartyTable temp = null;
+            for (PartyTable pt : tableList) {
+                if(pt.getGuestList().size() == tableSize) {
+                    System.err.println("This table " + pt.getTableName() + " is full SO THE PERSON WASN'T ADDED");
+                    continue;
+                } else if (pt.getGuestList().size() != tableSize ) {
+                    pt.getGuestList().add(g);
+                } else {
+                    PartyTable pt2 = new PartyTable(g.getName() + "'s table");
+                    pt2.getGuestList().add(g);
+                    temp = pt2;
+                    System.out.println("There's a new table: " + pt2.getTableName() + "'s table");
+                }
+            }
+            if (temp != null){
+                tableList.add(temp);//You can't add to a list you're iterating over
             }
         }
     }
@@ -98,5 +122,13 @@ public class Party {
             }
             System.out.println("\n");
         }
+
+    public void setTableSize(int tableSize) {
+        this.tableSize = tableSize;
     }
+
+    public int getTableSize() {
+        return tableSize;
+    }
+}
 

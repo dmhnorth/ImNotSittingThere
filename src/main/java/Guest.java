@@ -1,7 +1,9 @@
+import java.util.ArrayList;
+
 public class Guest {
 
     private String name = "";
-    private double tilt = 0;
+    private ArrayList<Guest> blackList;
 
     public Guest(String name){
         setName(name);
@@ -20,11 +22,12 @@ public class Guest {
         return getName();
     }
 
-    public double getTilt() {
-        return tilt;
+
+    public ArrayList<Guest> getBlackList() {
+        return blackList;
     }
 
-    public void setTilt(double tilt) {
-        this.tilt = tilt;
+    public void setBlackList(ArrayList<Guest> blackList) {
+        this.blackList = blackList;
     }
 }
