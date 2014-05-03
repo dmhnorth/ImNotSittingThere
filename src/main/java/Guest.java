@@ -1,6 +1,7 @@
 public class Guest {
 
     private String name = "";
+    private double tilt = 0;
 
     public Guest(String name){
         setName(name);
@@ -17,5 +18,13 @@ public class Guest {
 
     public String guestDetailsToString() {
         return getName();
+    }
+
+    public double getTilt() {
+        return tilt;
+    }
+
+    public void setTilt(double tilt) {
+        this.tilt = tilt;
     }
 }
